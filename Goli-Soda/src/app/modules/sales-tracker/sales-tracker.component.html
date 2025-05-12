@@ -1,0 +1,62 @@
+<div class="container-fluid mt-4">
+    <h4 class="mb-4 text-center">Daily Sales & Bank Report</h4>
+  
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-nowrap">
+          <thead class="table-dark text-center">
+            <tr>
+              <th>Date</th>
+              <th>Bottles Opening Stock</th>
+              <th>Bottles Production</th>
+              <th>Bottles Total Stock</th>
+              <th>Leakage Bottles</th>
+              <th>Bottles Damage</th>
+              <th>Details</th>
+              <th>Full Crates Stock</th>
+              <th>Bottles Sold (Cash)</th>
+              <th>Bottles Cash Total</th>
+              <th>Bottles Closing Stock</th>
+              <th>Bank Deposit Date</th>
+              <th>S.No</th>
+              <th>Bank Amount</th>
+              <th>Remarks</th>
+              <th>Bank Details</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="records">
+            <tr *ngFor="let row of records.controls; let i = index" [formGroupName]="i">
+              <td><input type="date" class="form-control form-control-sm" formControlName="date" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesOpeningStock" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesProduction" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesTotalStock" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="leakageBottles" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesDamage" /></td>
+              <td><input type="text" class="form-control form-control-sm" formControlName="details" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="fullCratesStock" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesSoldCash" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesCashTotal" /></td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bottlesClosingStock" /></td>
+              <td><input type="date" class="form-control form-control-sm" formControlName="bankDepositDate" /></td>
+              <td class="text-center">{{ i + 1 }}</td>
+              <td><input type="number" class="form-control form-control-sm" formControlName="bankAmount" /></td>
+              <td>
+                <textarea class="form-control form-control-sm" formControlName="remarks" rows="2"></textarea>
+              </td>
+              <td><input type="text" class="form-control form-control-sm" formControlName="bankDetails" /></td>
+              <td class="text-center">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeRow(i)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="d-flex justify-content-between mt-3">
+        <button type="button" class="btn btn-primary" (click)="addRow()">Add Row</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,67 @@
+<div class="container mt-4">
+    <form [formGroup]="peopleForm" (ngSubmit)="onSubmit()">
+      <button type="button" class="btn btn-primary mb-3" (click)="addPerson()">Add New Customer</button>
+  
+      <div formArrayName="people">
+        <div *ngFor="let person of people.controls; let i = index" [formGroupName]="i" class="mb-4">
+          <div class="card">
+            <div class="card-body p-2">
+              <div class="row mb-2">
+                <div class="col">
+                  <input class="form-control" formControlName="accountNo" placeholder="Account No" />
+                </div>
+                <div class="col">
+                  <input class="form-control" formControlName="accountName" placeholder="Account Name" />
+                </div>
+                <div class="col">
+                  <input class="form-control" formControlName="contact" placeholder="Client Contact No" />
+                </div>
+                <div class="col">
+                  <input class="form-control" formControlName="village" placeholder="Village" />
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-success" type="button" (click)="toggleDetails(i)">
+                    {{ detailsVisibility[i] ? 'Hide Details' : 'View Details' }}
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-danger" type="button" (click)="removePerson(i)">Delete</button>
+                </div>
+              </div>
+  
+              <div *ngIf="detailsVisibility[i]" class="table-responsive">
+                <button class="btn btn-secondary mb-2" type="button" (click)="addDetail(i)">Add Detail</button>
+                <table class="table table-bordered table-sm">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Date</th>
+                      <th>Details</th>
+                      <th>Stock In Crates</th>
+                      <th>Stock Out Crates</th>
+                      <th>Balance Crates</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody formArrayName="details">
+                    <tr *ngFor="let detail of getDetails(i).controls; let j = index" [formGroupName]="j">
+                      <td><input type="date" class="form-control" formControlName="date" /></td>
+                      <td><input type="text" class="form-control" formControlName="details" /></td>
+                      <td><input type="number" class="form-control" formControlName="stockIn" /></td>
+                      <td><input type="number" class="form-control" formControlName="stockOut" /></td>
+                      <td><input type="number" class="form-control" formControlName="balance" /></td>
+                      <td>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="removeDetail(i, j)">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <button class="btn btn-success mt-3" type="submit">Submit All</button>
+    </form>
+  </div>
+  

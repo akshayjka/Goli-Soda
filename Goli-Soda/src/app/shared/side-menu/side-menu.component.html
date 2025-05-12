@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" class="sidenav" fixedInViewport>
+      <mat-toolbar color="primary">Menu</mat-toolbar>
+      <!-- <mat-nav-list>
+        <a mat-list-item (click)="loadComponent('dashboard')">Dashboard</a>
+        <a mat-list-item (click)="loadComponent('customers')">Customers</a>
+        <a mat-list-item (click)="loadComponent('orders')">Orders</a>
+        <a mat-list-item (click)="loadComponent('logout')">Logout</a>
+      </mat-nav-list> -->
+
+      <mat-nav-list>
+        <a
+          mat-list-item
+          *ngFor="let item of menuItems"
+          (click)="loadComponent(item.value)"
+          [ngClass]="{ 'active-menu': selectedMenu === item.value }"
+        >
+          {{ item.label }}
+        </a>
+        
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span>Goli Soda Admin</span>
+            <span class="spacer"></span>
+            <button mat-raised-button (click)="logout()">Logout</button>
+          </mat-toolbar>
+          
+  
+      <div class="main-content">
+        <ng-template #dynamicComponentContainer></ng-template>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

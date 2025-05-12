@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+    <div class="row g-4">
+  
+      <!-- Sales Tracker -->
+      <div class="col-md-4">
+        <div class="card text-white bg-primary h-100">
+          <div class="card-body">
+            <h5 class="card-title">Sales Tracker</h5>
+            <p class="card-text">Total Sales: ₹{{ sales.total }}</p>
+            <p class="card-text">Today: ₹{{ sales.today }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Production Tracker -->
+      <div class="col-md-4">
+        <div class="card text-white bg-success h-100">
+          <div class="card-body">
+            <h5 class="card-title">Production Tracker</h5>
+            <p class="card-text">Today's Production: {{ production.today }} bottles</p>
+            <p class="card-text">This Week: {{ production.week }} bottles</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Customers -->
+      <div class="col-md-4">
+        <div class="card text-white bg-info h-100">
+          <div class="card-body">
+            <h5 class="card-title">Customers</h5>
+            <p class="card-text">Total Customers: {{ customers.total }}</p>
+            <p class="card-text">New Today: {{ customers.new }}</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+  <!-- charts -->
+
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">Dashboard</h2>
+  
+    <div class="row">
+      <!-- Sales Tracker -->
+      <div class="col-md-4">
+        <h5 class="text-center">Sales Tracker</h5>
+        <canvas baseChart
+        [data]="salesChartData"
+        [type]="salesChartType">
+</canvas>
+      </div>
+  
+      <!-- Production Tracker -->
+      <div class="col-md-4">
+        <h5 class="text-center">Production Tracker</h5>
+        <canvas baseChart
+        [data]="productionChartData"
+        [type]="productionChartType">
+</canvas>
+      </div>
+  
+      <!-- Customer Overview -->
+      <div class="col-md-4">
+        <h5 class="text-center">Customer Overview</h5>
+        <canvas baseChart
+        [data]="customerChartData"
+        [type]="customerChartType">
+</canvas>
+      </div>
+    </div>
+  </div>
+  
+  
