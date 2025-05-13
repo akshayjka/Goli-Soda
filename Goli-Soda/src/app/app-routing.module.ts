@@ -6,6 +6,7 @@ import { SideMenuComponent } from './shared/side-menu/side-menu.component';
 import { ProductionTrackerComponent } from './modules/production-tracker/production-tracker.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path:'login', component:LoginComponent
   },
