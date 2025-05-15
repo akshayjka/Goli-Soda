@@ -8,6 +8,8 @@ import { ChartData, ChartType } from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
 
+  cratesToReturn: number = 120;
+
   sales = {
     total: 120000,
     today: 3500
@@ -23,21 +25,44 @@ export class DashboardComponent implements OnInit {
     new: 5
   };
 
+  productions = {
+    today: 243,  // Example value
+    week: 3100
+  };
+  
+  crates = {
+    full: Math.floor(this.productions.today / 24),
+    remaining: this.productions.today % 24
+  };
+
+  
+
   constructor() { }
 
   ngOnInit(): void {
+    this.updateCrates();
+  }
+
+  updateCrates() {
+    const bottles = this.productions.today;
+    this.crates = {
+      full: Math.floor(bottles / 24),
+      remaining: bottles % 24
+    };
   }
 
   public salesChartType: ChartType = 'pie';
+
   public salesChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: ['Cash Sales', 'Credit Sales', 'Online Sales'],
+    labels: ['Shipped/Sold Bottles', 'Returned Bottles', 'In Production/Factory'],
     datasets: [
       {
-        data: [5000, 3000, 2000],
-        backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726'],
+        data: [1200, 300, 900], // Example values, update with real data if needed
+        backgroundColor: ['#42A5F5', '#FFA726', '#66BB6A'],
       }
     ]
   };
+  
 
   // Bar Chart for Production Tracker
   public productionChartType: ChartType = 'bar';

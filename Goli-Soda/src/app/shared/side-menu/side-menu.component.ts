@@ -63,7 +63,7 @@ export class SideMenuComponent implements OnInit {
     { label: 'Dashboard', value: 'dashboard' },
     { label: 'Customers', value: 'customers' },
     { label: 'Production-Tracker', value: 'production' },
-    { label: 'Sales-Tracker', value: 'sales' },
+    { label: 'Sales-Tracker (Admin-Only)', value: 'sales' },
     // { label: 'Logout', value: 'logout' }
   ];
 
